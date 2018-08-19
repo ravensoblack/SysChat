@@ -133,6 +133,7 @@ while(client.socket.is_connected && !quit)
 				
 			// QUIT doesn't require any other parameters
 			case "QUIT":
+				logout();
 				writeln("205 closing connection - goodbye!");
 				quit=true;
 				break;
