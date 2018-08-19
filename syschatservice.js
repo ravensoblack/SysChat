@@ -135,7 +135,7 @@ while(client.socket.is_connected && !quit)
 			case "QUIT":
 				logout();
 				writeln("205 closing connection - goodbye!");
-				quit=true;
+				//quit=true;
 				break;
 				
 			default:
