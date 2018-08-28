@@ -20,7 +20,10 @@
 // Command=syschatservice.js
 
 var servicesfile=system.ctrl_dir + "services.ini";
+var oldservicefile=system.mods_dir + "syschatservice.js";
 var syschatexists=false;
+var razorpageexists=false;
+var razorchatexists=false;
 var syschatsection="SysChat";
 var razorpagesection="RazorPage";
 var razorchatsection="RazorChat";
@@ -31,6 +34,7 @@ if(file.exists)
 	file.open(file.exists ? 'r+':'w+');
 	existingsections=file.iniGetSections();
 	addsyschattoini(existingsections);
+	deloldservicefile();
 	file.close();
 }
 
@@ -38,31 +42,19 @@ function addsyschattoini(existingsections)
 {
 	for(i=0; i<existingsections.length; i++)
 	{
-		if(existingsections[i].toLowerCase()=="syschat")
+		if(existingsections[i].toLowerCase()==syschatsection.toLowerCase())
 		{
 			syschatexists=true;
 		}
-		else
-		{
-			syschatexists=false;
-		}
 		
-		if(existingsections[i].toLowerCase()=="razorpage")
+		if(existingsections[i].toLowerCase()==razorpagesection.toLowerCase())
 		{
 			razorpageexists=true;
 		}
-		else
-		{
-			razorpageexists=false;
-		}
 		
-		if(existingsections[i].toLowerCase()=="razorchat")
+		if(existingsections[i].toLowerCase()==razorchatsection.toLowerCase())
 		{
 			razorchatexists=true;
-		}
-		else
-		{
-			razorchatexists=false;
 		}
 	}
 	
@@ -94,7 +86,7 @@ function addsyschattoini(existingsections)
 	{
 		// add [RazorChat] to services.ini
 		file.iniSetValue(razorchatsection, "Port", "10006");
-		file.iniSetValue(razorchatsection, "MaxClients", "5");
+		file.iniSetValue(razorchatsection, "MaxClients", "20");
 		file.iniSetValue(razorchatsection, "Command", "razorchatservice.js");
 		print("[RazorChat] added to services.ini");
 	}
@@ -103,3 +95,18 @@ function addsyschattoini(existingsections)
 		print("[RazorChat] already exists in services.ini");
 	}
 }
+
+function deloldservicefile()
+{
+	// this will currently delete sbbs/mods/syschatservice.js
+	if(file_exists(oldservicefile))
+	{
+		file_remove(oldservicefile);
+		print("syschatservice.js deleted");
+	}
+	else
+	{
+		print("syschatservice.js doesn't exist");
+	}
+}
+
