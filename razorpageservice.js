@@ -17,7 +17,7 @@ load("portdefs.js");
 var quit=false;
 var debug=false;
 var authenticated=false;
-var pagerctrlfile=system.ctrl_dir + "sysavail.chat";
+const pagerctrlfile=system.ctrl_dir + "sysavail.chat";
 
 // Write a string to the client socket
 function write(str)
