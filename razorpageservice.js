@@ -1,13 +1,13 @@
-// syschatservice.js
+// razorpageservice.js
 
-// Synchronet Service for remote sysop paging & chat
+// Synchronet Service for remote sysop paging
 
 // Example configuration (in ctrl/services.ini):
 
-// [SysChat]
+// [RazorPage]
 // Port=10005
 // MaxClients=5
-// Command=syschatservice.js
+// Command=razorpageservice.js
 
 load("nodedefs.js");
 load("sockdefs.js");
